@@ -1,7 +1,7 @@
 FROM php:7.1
 RUN apt-get update \
-    && apt-get install -y unzip zlib1g-dev \
-    && docker-php-ext-install pdo pdo_mysql zip \
+    && apt-get install -y unzip zlib1g-dev libicu-dev \
+    && docker-php-ext-install pdo pdo_mysql zip intl \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install Node
