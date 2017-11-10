@@ -1,8 +1,9 @@
 FROM php:7.1
 RUN echo "127.0.0.1 mysql" >> /etc/hosts \
-    apt-get update && apt-get install -y unzip zlib1g-dev \
-    docker-php-ext-install pdo pdo_mysql zip \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    && apt-get update \
+    && apt-get install -y unzip zlib1g-dev \
+    && docker-php-ext-install pdo pdo_mysql zip \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install Node
 ENV NPM_CONFIG_LOGLEVEL notice
