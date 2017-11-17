@@ -25,12 +25,14 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         libfreetype6-dev \
+        pkg-config \
         imagemagick \
         libmcrypt-dev \
         libmagickwand-dev \
         libcurl4-openssl-dev \
         automake \
         build-essential \
+        curl \
         gobject-introspection \
         gtk-doc-tools \
         libglib2.0-dev \
@@ -62,11 +64,17 @@ RUN cd /tmp \
     && make \
     && make install \
     && ldconfig \
-    && pecl install imagick vips \
+    && apt-get remove -y automake build-essential \
+    && apt-get autoremove -y \
+    && apt-get autoclean \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN pecl install imagick vips \
     && echo "extension=vips.so" > /usr/local/etc/php/conf.d/vips.ini \
     && docker-php-ext-install mcrypt \
     && docker-php-ext-enable imagick \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && rm -rf /tmp/pear \
     && npm install uglify-js -g \
     && npm install less -g
 
