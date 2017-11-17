@@ -10,9 +10,9 @@ ENV NPM_CONFIG_LOGLEVEL notice
 ENV NODE_VERSION 8.9.1
 
 RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
-  && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
-  && rm "node-v$NODE_VERSION-linux-x64.tar.xz" \
-  && ln -s /usr/local/bin/node /usr/local/bin/nodejs
+    && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
+    && rm "node-v$NODE_VERSION-linux-x64.tar.xz" \
+    && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
 ENV SYMFONY_ENV prod
 ENV LIBVIPS_VERSION_MAJOR 8
