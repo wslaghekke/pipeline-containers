@@ -3,7 +3,7 @@ RUN apt-get update \
     && apt-get install -y unzip zlib1g-dev libicu-dev \
     && docker-php-ext-install pdo pdo_mysql zip intl \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && pecl install apcu \
+    && yes '' | pecl install -f apcu \
     && pecl clear-cache \
     && echo "extension=apcu.so" > /usr/local/etc/php/conf.d/apcu.ini
 

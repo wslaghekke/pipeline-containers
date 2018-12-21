@@ -4,7 +4,7 @@ RUN echo "127.0.0.1 mysql" >> /etc/hosts \
     && apt-get install -y unzip zlib1g-dev git \
     && docker-php-ext-install pdo pdo_mysql zip \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && pecl install apcu \
+    && yes '' | pecl install -f apcu \
     && pecl clear-cache \
     && echo "extension=apcu.so" > /usr/local/etc/php/conf.d/apcu.ini
 
