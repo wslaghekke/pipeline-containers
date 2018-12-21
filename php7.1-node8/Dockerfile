@@ -2,7 +2,10 @@ FROM php:7.1
 RUN apt-get update \
     && apt-get install -y unzip zlib1g-dev libicu-dev \
     && docker-php-ext-install pdo pdo_mysql zip intl \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && pecl install apcu \
+    && pecl clear-cache \
+    && echo "extension=apcu.so" > /usr/local/etc/php/conf.d/apcu.ini
 
 # Install Node
 ENV NPM_CONFIG_LOGLEVEL notice
