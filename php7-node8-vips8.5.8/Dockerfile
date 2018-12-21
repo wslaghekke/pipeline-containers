@@ -1,4 +1,4 @@
-FROM php:7
+FROM php:7.0
 RUN echo "127.0.0.1 mysql" >> /etc/hosts \
     && apt-get update \
     && apt-get install -y unzip zlib1g-dev git \
